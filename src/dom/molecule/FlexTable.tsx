@@ -1,10 +1,14 @@
 
 
 function Component ({ theArray, bools, config }:any) {
-    return (
+    return (<>
+
+        <div>
+            asd
+        </div>
         <div  className='flex-col    w-100 bord-r-5    block noverflow border-lgrey  box-shadow-1-b' >
+            
             {theArray.map((anObj:any)=>(
-            <>
             <div key={anObj[config.idKey]}
                 className=' w-100  block  border-lgrey-b flex pos-rel  '
             >
@@ -66,10 +70,9 @@ function Component ({ theArray, bools, config }:any) {
                     </div>
                 }
             </div>
-            </>
             ))}
         </div>
-    )
+    </>)
 }
 
 export default Component

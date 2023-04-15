@@ -6,12 +6,14 @@ import LoginForm from '@/dom/atom/LoginForm';
 import FlexTable from '@/dom/molecule/FlexTable';
 import Sidebar from '@/dom/atom/Sidebar';
 import DashboardSummary from '@/dom/atom/DashboardSummary';
+import KLineTable from '@/dom/atom/KLineTable';
+import KLineChart from '@/dom/atom/KLineChart';
 
 
 export default async function Home() {
 
 const theArray = await (
-  await fetch("https://api.binance.com/api/v3/klines?interval=4h&symbol=BTCUSDT")
+  await fetch("https://api.binance.com/api/v3/klines?interval=1m&symbol=BTCUSDT")
 ).json()
   
   const foundJWT:any = await AuthRepo.getJWT()
@@ -58,28 +60,16 @@ const theArray = await (
 
           <DashboardSummary theArray={theArray} />
 
+          <KLineChart initialArray={theArray} />
+
           <div >
             <h1>List</h1>
           </div>
           <hr className='opaci-25 w-100 mb-4 ' />
           <div className='tx-bold-3'>Table: isActionable, isRowLink, isDetailed</div>
           <h3 className='tx-bold-3'>Closing, Volumne, Trades</h3>
-          <FlexTable theArray={theArray} bools={[]}
-            config={{idKey:"0",mainKey:"4",linkKey:"0",linkAlt:"0",
-              mainAltText:"No Link",
-              detailsArray: [
-                // { key: "created_at",},
-                // { key: "updated_at",},
-                // { key: "pushed_at",},
-              ],
-              childrenArray: [
-                // { key: "name", class: "tx-mdl tx-bold-6"   },
-                { key: "0", class: "" }, // unix
-                { key: "7", class: "" }, // volume
-                { key: "8", class: "" }, // trades
-              ],
-            }}
-          />
+          <KLineTable initialArray={theArray} />
+          
             
         </div>
       </div>

@@ -1,4 +1,4 @@
-export const TICKER_SYMBOLS = ['EURUSDT', 'USDCUSDT'] as const;
+export const TICKER_SYMBOLS = ['EURUSDT', 'USDCUSDT', 'BTCUSDT', 'ETHUSDT', 'FTMUSDT', 'LINKUSDT'] as const;
 export type TickersSymbols = typeof TICKER_SYMBOLS;
 export type TickerName = TickersSymbols[number];
 
