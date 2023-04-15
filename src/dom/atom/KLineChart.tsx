@@ -7,9 +7,9 @@ import { findMaxAndMinValues } from "../../../script/util/helper/kline";
 
 function Component ({ initialArray }:any) {
     const candleLength = 10
-    const queryArray:any = useKLine("BTCUSDT", "1m", 60*50*1000); // SEC*CANDLE*MILISECONDS
+    const queryArray:any = useKLine("BTCUSDT", "1m", 61000); // SEC*CANDLE*MILISECONDS
     const activeArray = useMemo(()=>{
-        return queryArray.filter((x:any,i:number)=>i%50==0)
+        return queryArray.slice(500-candleLength,500)
     },[queryArray]) 
     const latestArray = useMemo(()=>{
         let rangeArray = initialArray.slice(500-candleLength,500)
@@ -43,8 +43,12 @@ function Component ({ initialArray }:any) {
         if (initialArray.length == 0) return null
         console.log("initialArray", initialArray.slice(500-candleLength,500))
         let stats = findMaxAndMinValues(initialArray.slice(500-candleLength,500))
+
+        let percentChange = -( (stats.minValue / stats.maxValue) - 1 )
+
         return {
             ...stats,
+            percentChange,
 
         }
     },[initialArray]) 
@@ -56,6 +60,7 @@ function Component ({ initialArray }:any) {
             style={{background: "linear-gradient(-50deg, #E6EBEC, #ffffff, #E6EBEC)"}}
         >
             <div>
+                <div className="pa-2 tx-sm pos-abs left-0 top-0 translate-y--100">{latestSummary?.percentChange}%</div>
                 <div className="pa-2 tx-sm pos-abs left-0 top-0">{latestSummary?.minValue}</div>
                 <div className="pa-2 tx-sm pos-abs left-0 bottom-0">{latestSummary?.maxValue}</div>
                 <div className="pa-2 tx-sm pos-abs left-0 top-50p">{latestSummary?.avg}</div>

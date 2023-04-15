@@ -61,6 +61,7 @@ const theArray = await (
             <DashboardSummary theArray={theArray} />
           </div>
 
+          
           <KLineChart initialArray={theArray} />
 
           <div >
