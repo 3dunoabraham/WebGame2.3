@@ -5,13 +5,12 @@ import TickerCard from '@/dom/atom/TickerCard'
 import LoginForm from '@/dom/atom/LoginForm';
 import FlexTable from '@/dom/molecule/FlexTable';
 import Sidebar from '@/dom/atom/Sidebar';
-import DashboardSummary from '@/dom/atom/DashboardSummary';
 
 
 export default async function Home() {
 
 const theArray = await (
-  await fetch("https://api.binance.com/api/v3/klines?interval=4h&symbol=BTCUSDT")
+  await fetch("https://api.github.com/users/3dunoabraham/repos")
 ).json()
   
   const foundJWT:any = await AuthRepo.getJWT()
@@ -23,7 +22,7 @@ const theArray = await (
     }
   ) : null
   console.log("foundUser home page", foundUser)
-  
+
   const tickers: Ticker[] = await Promise.all(
     TICKER_SYMBOLS.map((aTicker)=>(getTicker(aTicker)))
   );  
@@ -56,25 +55,24 @@ const theArray = await (
               </div>
           </div>
 
-          <DashboardSummary theArray={theArray} />
-
+          
           <div >
             <h1>List</h1>
           </div>
           <hr className='opaci-25 w-100 mb-4 ' />
           <div className='tx-bold-3'>Table: isActionable, isRowLink, isDetailed</div>
           <h3 className='tx-bold-3'>Homepage, Name, Size, <i>Repo</i></h3>
-          <FlexTable theArray={theArray} bools={[]}
-            config={{idKey:"0",mainKey:"4",linkKey:"0",linkAlt:"0",
+          <FlexTable theArray={theArray} bools={["isActionable","isRowLink","isDetailed"]}
+            config={{idKey:"id",mainKey:"homepage",linkKey:"homepage",linkAlt:"html_url",
               mainAltText:"No Link",
               detailsArray: [
-                // { key: "created_at",},
-                // { key: "updated_at",},
-                // { key: "pushed_at",},
+                { key: "created_at",},
+                { key: "updated_at",},
+                { key: "pushed_at",},
               ],
               childrenArray: [
-                // { key: "name", class: "tx-mdl tx-bold-6"   },
-                // { key: "size", class: "tx-sm" },
+                { key: "name", class: "tx-mdl tx-bold-6"   },
+                { key: "size", class: "tx-sm" },
               ],
             }}
           />

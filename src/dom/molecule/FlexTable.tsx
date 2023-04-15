@@ -16,7 +16,6 @@ function Component ({ theArray, bools, config }:any) {
                         ></a> 
                         {bools.includes("isActionable") &&
                             <div className=' invisible noclick'>
-                                {/* <i className='px-1 opaci-30 tx-lx'>...</i> */}
                                 <a href={anObj[config.linkAlt]} className=" py-3 opaci-chov--50 tx-lg pb-3 px-2 block">...</a>
                             </div>
                         }
@@ -62,7 +61,6 @@ function Component ({ theArray, bools, config }:any) {
 
                 {bools.includes("isActionable") &&
                     <div className=' z-1'>
-                        {/* <i className='px-1 opaci-30 tx-lx'>...</i> */}
                         <a href={anObj[config.linkAlt]} target="_blank" rel="noopener noreferrer"
                             className="nodeco py-3 opaci-chov--50 tx-lg pb-3 px-2 block">...</a>
                     </div>
