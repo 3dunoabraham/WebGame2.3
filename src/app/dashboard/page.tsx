@@ -96,17 +96,16 @@ const ticker = await (
                   <div className='py-1 border-lgrey-r flex-1 px-2'>
                     {aRepo.homepage || <>
                       <details>
-                        <summary className='opaci-chov--50'>No link: Details</summary>
+                        <summary className='opaci-chov--50 opaci-75 tx-italic'>No link: Details</summary>
                         <div>
                           {JSON.stringify(aRepo)}
                         </div>
                       </details>
                     </>}
                   </div>
-                  <div className='py-2 px-2 border-lgrey-r'>{aRepo.name}</div>
-                  <div className='py-2 px-2 border-lgrey-r'>{aRepo.size}</div>
-                  <div className='py-2 px-2 '><i className='tx-lg'>→</i></div>
-                  {/* {Object.keys(aRepo).join(" | ")} */}
+                  <div className='py-2 px-2 border-lgrey-r tx-mdl tx-bold-6 '>{aRepo.name}</div>
+                  <div className='py-2 px-2 border-lgrey-r tx-sm'>{aRepo.size}</div>
+                  {/* <div className='py-2 px-2 '><i className='tx-lg'>→</i></div> */}
                 </div>
                 </>
               ))}
@@ -118,10 +117,6 @@ const ticker = await (
     </div>
     <div className='py-8 tx-center  w-100 opaci-10'>
       <h1>License | Copyright © 2023 WebGame</h1>
-      
-      {/* <div className=''>
-          <a href="https://mit-license.org/">MIT</a>
-        </div> */}
     </div>
     </main>
   )
