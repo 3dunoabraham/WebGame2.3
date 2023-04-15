@@ -84,13 +84,19 @@ const theArray = await (
             <h1>List</h1>
           </div>
           <hr className='opaci-25 w-100 mb-4 ' />
+          <div className='tx-bold-3'>Table: isActionable, isRowLink, isDetailed</div>
           <h3 className='tx-bold-3'>Homepage, Name, Size, <i>Repo</i></h3>
-          <FlexTable theArray={theArray} bools={["isActionable","isRowLink"]}
+          <FlexTable theArray={theArray} bools={["isActionable","isRowLink","isDetailed"]}
             config={{idKey:"id",mainKey:"homepage",linkKey:"homepage",linkAlt:"html_url",
+              detailsArray: [
+                { key: "created_at",},
+                { key: "updated_at",},
+                { key: "pushed_at",},
+              ],
               childrenArray: [
                 { key: "name", class: "tx-mdl tx-bold-6"   },
                 { key: "size", class: "tx-sm" },
-              ]
+              ],
             }}
           />
             
