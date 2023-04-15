@@ -86,7 +86,12 @@ const theArray = await (
           <hr className='opaci-25 w-100 mb-4 ' />
           <h3 className='tx-bold-3'>Homepage, Name, Size, <i>Repo</i></h3>
           <FlexTable theArray={theArray} bools={["isActionable","isRowLink"]}
-            config={{mainKey:"homepage",linkKey:"homepage",linkAlt:"html_url"}}
+            config={{idKey:"id",mainKey:"homepage",linkKey:"homepage",linkAlt:"html_url",
+              childrenArray: [
+                { key: "name", class: "tx-mdl tx-bold-6"   },
+                { key: "size", class: "tx-sm" },
+              ]
+            }}
           />
             
         </div>
