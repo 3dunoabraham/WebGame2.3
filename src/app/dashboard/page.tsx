@@ -83,11 +83,11 @@ const ticker = await (
           <hr className='opaci-25 w-100 mb-4 ' />
           <h3 className='tx-bold-3'>Homepage, Name, Size</h3>
 
-            <div  className='flex-col   z-800  w-100 bord-r-5    block  ' >
+            <div  className='flex-col   z-800  w-100 bord-r-5    block noverflow border-lgrey  box-shadow-1-b' >
               {ticker.map((aRepo:any)=>(
                 <>
                 <div key={ticker.id}
-                  className=' w-100  block  border-lgrey-b flex pos-rel border-lgrey'
+                  className=' w-100  block  border-lgrey-b flex pos-rel  '
                 >
                   
                   {!!aRepo.homepage && <a href={aRepo.html_url} target="_blank" rel="noopener noreferrer" key={ticker.id}
