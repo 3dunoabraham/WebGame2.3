@@ -40,6 +40,7 @@ export function findPivots(data: number[][]): {
 
 
 export function findMaxAndMinValues(data: number[][]): { 
+  avg: number, 
   maxValue: number, 
   minValue: number 
 } {
@@ -47,17 +48,18 @@ export function findMaxAndMinValues(data: number[][]): {
   let minValue: number = Number.MAX_VALUE;
   
   for (let i = 0; i < data.length; i++) {
-    if (parseFloat(`${data[i][4]}`) > maxValue) {
-      maxValue = parseFloat(`${data[i][4]}`);
+    if (parseFloat(`${data[i][2]}`) > maxValue) {
+      maxValue = parseFloat(`${data[i][2]}`);
     }
-    if (parseFloat(`${data[i][4]}`) < minValue) {
-      minValue = parseFloat(`${data[i][4]}`);
+    if (parseFloat(`${data[i][3]}`) < minValue) {
+      minValue = parseFloat(`${data[i][3]}`);
     }
   }
   
   return {
     maxValue,
-    minValue
+    minValue,
+    avg: (maxValue + minValue) / 2
   };
 }
 

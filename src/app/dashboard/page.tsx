@@ -50,15 +50,16 @@ const theArray = await (
         <div className='w-min-300px invisible'> invisible sidebar spacing </div>
         <div className='flex-1 flex-col  flex-align-start tx-sans'>
           
-          <div>
+          {/* <div>
             <h1 className='tx-bold-3'>Tickers</h1>
             
             <div className=''>
                 {tickerCards}
               </div>
+          </div> */}
+          <div className='mb-8'>
+            <DashboardSummary theArray={theArray} />
           </div>
-
-          <DashboardSummary theArray={theArray} />
 
           <KLineChart initialArray={theArray} />
 

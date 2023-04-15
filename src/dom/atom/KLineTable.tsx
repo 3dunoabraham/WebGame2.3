@@ -6,11 +6,11 @@ import useTicker from "../../../script/util/hook/useTicker";
 
 
 function Component ({ initialArray }:any) {
-    const queryArray:any = useTicker("EURUSDT", 10000);
-    const activeArray = useMemo(()=>{
-        console.log("queryArray", queryArray)
-        return []
-    },[queryArray]) 
+    // const queryArray:any = useTicker("EURUSDT", 10000);
+    // const activeArray = useMemo(()=>{
+    //     console.log("queryArray", queryArray)
+    //     return []
+    // },[queryArray]) 
 
     return (
         <FlexTable theArray={initialArray} bools={[]}

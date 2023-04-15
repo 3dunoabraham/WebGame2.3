@@ -23,10 +23,11 @@ function Component ({ initialArray }:any) {
         
         return rangeArray.map((x:any,i:any)=>{
             let side = x[4] > x[1] ? 1 : 0
-            let currentRaiseDiff = x[3] - rangeValues.minValue 
+            let currentRaiseDiff = (side ? x[1] : x[4]) - rangeValues.minValue 
             let high = side ? x[4] : x[1]
             let low = !side ? x[4] : x[1]
             let candleHeight = high - low
+
             return {
                 max: x[2],
                 high,
@@ -41,26 +42,32 @@ function Component ({ initialArray }:any) {
 
     const latestSummary = useMemo(()=>{
         if (initialArray.length == 0) return null
-        console.log("initialArray", initialArray)
-        let minPrice = findMaxAndMinValues(initialArray)
+        console.log("initialArray", initialArray.slice(490,500))
+        let stats = findMaxAndMinValues(initialArray.slice(490,500))
         return {
-            ...minPrice,
+            ...stats,
 
         }
-            //     return analizedData
     },[initialArray]) 
 
 
 
     return (
-        <div className="w-90 h-min-400px">
-            chart {latestArray.length}
-            {JSON.stringify(latestSummary)}
-            <div className="flex flex-justify-between w-100   h-100 pos-rel">
-                {latestArray.map((aCandle:any, index:number) => {
-                    return (
-                        <div key={index} className="">
-                            <div className="tx-xs pos-abs tx-gray"
+        <div className="flex-col w-100 pos-rel box-shadow-1 py-2 "
+            style={{background: "linear-gradient(-50deg, #E6EBEC, #ffffff, #E6EBEC)"}}
+        >
+            <div>
+                <div className="pa-2 tx-sm pos-abs left-0 top-0">{latestSummary?.minValue}</div>
+                <div className="pa-2 tx-sm pos-abs left-0 bottom-0">{latestSummary?.maxValue}</div>
+                <div className="pa-2 tx-sm pos-abs left-0 top-50p">{latestSummary?.avg}</div>
+            </div>
+            <div className="w-80 h-min-400px">
+                {/* chart {latestArray.length} */}
+                {/* {JSON.stringify(latestSummary)} */}
+                <div className="flex flex-justify-between w-100   h-100 pos-rel">
+                    {latestArray.map((aCandle:any, index:number) => {
+                        return (
+                            <div className="tx-xs pos-abs tx-gray" key={index}
                                 style={{
                                     background: aCandle.side ? "green" : "red",
                                     width:"10%",
@@ -71,9 +78,9 @@ function Component ({ initialArray }:any) {
                             >
                                 {`${(aCandle.heightPercent * 100).toFixed(2)}`}
                             </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )

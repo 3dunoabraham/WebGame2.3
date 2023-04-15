@@ -6,8 +6,12 @@ export default function useKLine(tickerName: TickerName, timeframe: string, dela
     const [kline, setKLine] = useState<KLine[]>([]);
   
     const fetchKLine = async () => {
-      const newKLine = await getKLine(tickerName, timeframe);
-      setKLine(newKLine);
+      try {
+        const newKLine = await getKLine(tickerName, timeframe);
+        setKLine(newKLine);
+      } catch (e) {
+        return
+      }
     };
   
     useEffect(() => {
