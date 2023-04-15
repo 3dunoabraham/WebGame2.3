@@ -8,11 +8,15 @@ import { findMaxAndMinValues } from "../../../script/util/helper/kline";
 function Component ({ initialArray }:any) {
     const candleLength = 10
     const queryArray:any = useKLine("BTCUSDT", "1m", 61000); // SEC*CANDLE*MILISECONDS
-    const activeArray = useMemo(()=>{
-        return queryArray.slice(500-candleLength,500)
+    const latestCandles = useMemo(()=>{
+        return queryArray
+        let latestLatest = queryArray.slice(500-candleLength,500)
+        console.log("latestLatest", latestLatest)
+        return latestLatest
     },[queryArray]) 
     const latestArray = useMemo(()=>{
-        let rangeArray = initialArray.slice(500-candleLength,500)
+        let theArray = latestCandles.length == 0 ? initialArray : latestCandles
+        let rangeArray = theArray.slice(500-candleLength,500)
         let rangeValues = findMaxAndMinValues(rangeArray)
         let priceRange = rangeValues.maxValue - rangeValues.minValue 
         
@@ -37,12 +41,13 @@ function Component ({ initialArray }:any) {
                 side,
             }
         })
-    },[initialArray]) 
+    },[initialArray, latestCandles]) 
 
     const latestSummary = useMemo(()=>{
         if (initialArray.length == 0) return null
-        console.log("initialArray", initialArray.slice(500-candleLength,500))
-        let stats = findMaxAndMinValues(initialArray.slice(500-candleLength,500))
+        // console.log("initialArray", initialArray.slice(500-candleLength,500))
+        let theArray = latestCandles.length == 0 ? initialArray : latestCandles
+        let stats = findMaxAndMinValues(theArray.slice(500-candleLength,500))
 
         let percentChange = -( (stats.minValue / stats.maxValue) - 1 )
 
@@ -51,7 +56,7 @@ function Component ({ initialArray }:any) {
             percentChange,
 
         }
-    },[initialArray]) 
+    },[initialArray, latestCandles]) 
 
 
 
