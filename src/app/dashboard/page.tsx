@@ -3,11 +3,12 @@ import AuthRepo from '@/../script/state/repository/auth'
 import { TICKER_SYMBOLS, Ticker, getTicker } from '@/../script/state/repository/ticker'
 import TickerCard from '@/dom/atom/TickerCard'
 import LoginForm from '@/dom/atom/LoginForm';
+import FlexTable from '@/dom/molecule/FlexTable';
 
 
 export default async function Home() {
 
-const ticker = await (
+const theArray = await (
   await fetch("https://api.github.com/users/3dunoabraham/repos")
 ).json()
   
@@ -32,7 +33,9 @@ const ticker = await (
     <main className='flex-col pos-rel  ' >
       <div className='h-min-100vh pos-rel w-100 '>
         
-       <div className=' pos-fix h-100vh box-shadow-3' style={{background: "linear-gradient(-65deg, #D6DBDC, #ffffff)"}}> {/* 3E5F58 */}
+       <div className=' pos-fix h-100vh box-shadow-2'
+          style={{background: "linear-gradient(50deg, #E6EBEC, #ffffff, #E6EBEC)"}}
+        > {/* 3E5F58 */}
         <div className='w-min-300px h-100 flex-col'>
           
           <a href="/" rel="noopener noreferrer"
@@ -81,35 +84,11 @@ const ticker = await (
             <h1>List</h1>
           </div>
           <hr className='opaci-25 w-100 mb-4 ' />
-          <h3 className='tx-bold-3'>Homepage, Name, Size</h3>
-
-            <div  className='flex-col   z-800  w-100 bord-r-5    block noverflow border-lgrey  box-shadow-1-b' >
-              {ticker.map((aRepo:any)=>(
-                <>
-                <div key={ticker.id}
-                  className=' w-100  block  border-lgrey-b flex pos-rel  '
-                >
-                  
-                  {!!aRepo.homepage && <a href={aRepo.html_url} target="_blank" rel="noopener noreferrer" key={ticker.id}
-                    className='opaci-chov-75 w-100  block pos-abs  border-lgrey-b flex bg-b-40 top-0 left-0 h-100 opaci-10'
-                  ></a> }
-                  <div className='py-1 border-lgrey-r flex-1 px-2'>
-                    {aRepo.homepage || <>
-                      <details>
-                        <summary className='opaci-chov--50 opaci-75 tx-italic'>No link: Details</summary>
-                        <div>
-                          {JSON.stringify(aRepo)}
-                        </div>
-                      </details>
-                    </>}
-                  </div>
-                  <div className='py-2 px-2 border-lgrey-r tx-mdl tx-bold-6 '>{aRepo.name}</div>
-                  <div className='py-2 px-2 border-lgrey-r tx-sm'>{aRepo.size}</div>
-                  {/* <div className='py-2 px-2 '><i className='tx-lg'>→</i></div> */}
-                </div>
-                </>
-              ))}
-            </div>
+          <h3 className='tx-bold-3'>Homepage, Name, Size, <i>Repo</i></h3>
+          <FlexTable theArray={theArray} bools={["isActionable","isRowLink"]}
+            config={{mainKey:"homepage",linkKey:"homepage",linkAlt:"html_url"}}
+          />
+            
         </div>
       </div>
 
