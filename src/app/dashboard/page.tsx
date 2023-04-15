@@ -88,6 +88,7 @@ const theArray = await (
           <h3 className='tx-bold-3'>Homepage, Name, Size, <i>Repo</i></h3>
           <FlexTable theArray={theArray} bools={["isActionable","isRowLink","isDetailed"]}
             config={{idKey:"id",mainKey:"homepage",linkKey:"homepage",linkAlt:"html_url",
+              mainAltText:"No Link",
               detailsArray: [
                 { key: "created_at",},
                 { key: "updated_at",},

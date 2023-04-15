@@ -15,17 +15,15 @@ function Component ({ theArray, bools, config }:any) {
                         className='opaci-chov-75 z-10  block   border-lgrey-b flex bg-b-40  opaci-10 flex-1'
                         ></a> 
                         {bools.includes("isActionable") &&
-                            <div className='py-2 px-2 invisible noclick'>
-                                <i className='tx-lg px-1 opaci-30'>?</i>
-                                <a href={anObj[config.linkAlt]}>
-                                    →
-                                </a>
+                            <div className=' invisible noclick'>
+                                {/* <i className='px-1 opaci-30 tx-lx'>...</i> */}
+                                <a href={anObj[config.linkAlt]} className=" py-3 opaci-chov--50 tx-lg pb-3 px-2 block">...</a>
                             </div>
                         }
                     </div>
                 }
 
-                <div className='py-1 border-lgrey-r flex-1 px-2 pos-rel'>
+                <div className=' border-lgrey-r flex-1 px-2 pos-rel pt-2'>
                     {!!anObj[config.mainKey] && <>
                         {anObj[config.mainKey]}
                     </>}
@@ -34,13 +32,13 @@ function Component ({ theArray, bools, config }:any) {
                     </>}
                     {!anObj[config.mainKey] && bools.includes("isDetailed") && <>
                         <details>
-                            <summary className='opaci-chov--50 opaci-75  tx-italic'>No link: Details</summary>
-                            <div className="flex-col    ">
+                            <summary className='opaci-chov--50 opaci-75  tx-italic'>{config.mainAltText}</summary>
+                            <div className="flex-col pa-2   ">
                             
                                 {config.detailsArray && config.detailsArray.map((aDetail:any, index:number)=>{
                                     return (
                                         <div key={index} className="w-100">
-                                            <div className={`py-2 px-2   ${aDetail.class}`}>
+                                            <div className={`   ${aDetail.class}`}>
                                                 <span className="tx-sm">{aDetail.key}</span>:
                                                 <div>{anObj[aDetail.key]}</div>
                                             </div>
@@ -52,26 +50,21 @@ function Component ({ theArray, bools, config }:any) {
                     </>}
                 </div>
                 
-                <div className="flex">
+                <div className="flex ">
                     {config.childrenArray && config.childrenArray.map((aChildren:any, index:number)=>{
                         return (
-                            <div key={index}>
-                                <div className={`py-2 px-2 border-lgrey-r  ${aChildren.class}`}>
-                                    {anObj[aChildren.key]}
-                                </div>
+                            <div key={index}  className={`flex-col px-2 border-lgrey-r  ${aChildren.class}`}>
+                                {anObj[aChildren.key]}
                             </div>
                         )
                     })}
                 </div>
 
                 {bools.includes("isActionable") &&
-                    <div className='py-2 px-2 z-1'>
-                        <i className='tx-lg px-1 opaci-30'>?</i>
+                    <div className=' z-1'>
+                        {/* <i className='px-1 opaci-30 tx-lx'>...</i> */}
                         <a href={anObj[config.linkAlt]} target="_blank" rel="noopener noreferrer"
-                            className="nodeco"
-                        >
-                            →
-                        </a>
+                            className="nodeco py-3 opaci-chov--50 tx-lg pb-3 px-2 block">...</a>
                     </div>
                 }
             </div>
