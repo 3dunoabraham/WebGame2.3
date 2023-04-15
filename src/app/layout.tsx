@@ -1,3 +1,4 @@
+import '@/../style/css.css'
 import authRepo from '@/../script/state/repository/auth'
 import ClientLayoutWrapper from "@/dom/atom/ClientLayoutWrapper"
 
@@ -19,9 +20,6 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        <link rel="stylesheet" href="https://unpkg.com/csscss@1.0.7/index.css" />
-      </head>
       <ClientLayoutWrapper session={{jwt:foundJWT,user:foundUser}}>
         <body className="ma-0 h-min-100vh" >
           {children}

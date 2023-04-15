@@ -28,7 +28,7 @@ const Component = ({
   },[forms.isForm])
 
   return (<>
-    <div className='flex-col  pt-100'>
+    <div className='flex-col '>
         
         <button className='py-2 px-7 tx-lgx  opaci-50 noborder opaci-chov--75 mb-3 box-shadow-2-b z-100'
             onClick={triggerDemo}
@@ -49,12 +49,12 @@ const Component = ({
           </div>
         }
         
-        <div className="flex   mb-100">
+        <div className="flex   ">
           <a className='py-2 px-6 tx-lgx  opaci-75 opaci-chov--50 mt-3 noborder bg-trans tx-blue z-100'
             style={{filter:"hue-rotate(-42deg)"}}
             onClick={forms.isForm ? triggerLogin : triggerIsForm}
           >
-            <div className="tx-bold-2 tx-link ">Register</div>  
+            <div className="tx-bold-2  ">Register</div>  
           </a>
           {/* <span className="pt-6 tx-ls-2 opaci-25 pr-8 tx-bold-2 tx-lg">or</span> */}
 
