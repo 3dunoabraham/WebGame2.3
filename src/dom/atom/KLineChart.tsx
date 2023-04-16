@@ -75,14 +75,17 @@ function Component ({ initialArray }:any) {
     
 
     const latestSummary = useMemo(()=>{
-        if (initialArray.length == 0) return null
+        if (initialArray.length == 0 && latestCandles.length == 0) return null
         // console.log("initialArray", initialArray.slice(500-candleLength,500))
         let theArray = latestCandles.length == 0 ? initialArray : latestCandles
-        let stats = findMaxAndMinValues(theArray.slice(500-candleLength,500))
+        let slicedArray = theArray.slice(500-candleLength,500)
+        let stats = findMaxAndMinValues(slicedArray)
 
-        // let percentChange = -( (stats.minValue / stats.maxValue) - 1 )
-        // console.table(stats)
-        let percentChange = 0
+        let start = slicedArray[0][1]
+        let end = slicedArray[9][4]
+        let side = end > start ? 1 : 0
+        let percentChange = side ? start / end : end / start
+
 
         return {
             ...stats,
@@ -98,7 +101,7 @@ function Component ({ initialArray }:any) {
             style={{background: "linear-gradient(-50deg, #E6EBEC, #ffffff, #E6EBEC)"}}
         >
             <div>
-                <div className="pa-2 tx-sm pos-abs left-0 top-0 translate-y--100">{latestSummary?.percentChange}%</div>
+                <div className="pa-2 tx-sm pos-abs left-0 top-0 translate-y--100">{100 - ( (latestSummary?.percentChange || 100) *100 )}%</div>
                 <div className="pa-2 tx-sm pos-abs left-0 bottom-0">{latestSummary?.minValue}</div>
                 <div className="pa-2 tx-sm pos-abs left-0 top-0">{latestSummary?.maxValue}</div>
                 <div className="pa-2 tx-sm pos-abs left-0 top-50p">{latestSummary?.avg}</div>
@@ -142,20 +145,6 @@ function Component ({ initialArray }:any) {
         >
             <div className="w-100 flex-col   h-min-200px">
                 <div className="flex  flex-justify-between w-100    h-100 pos-rel">
-                    {latestArray.map((aCandle:any, index:number) => {
-                        return (
-                            <div className="tx-xs pos-abs tx-gray" key={index}
-                                style={{
-                                    background: aCandle.side ? "green" : "red",
-                                    width:"1px",
-                                    height: `${aCandle.heightPercent*100}%`,
-                                    left: `${index*candleLength}px`,
-                                    bottom: `${aCandle.raisePercent*100}%`,
-                                }}
-                            >
-                            </div>
-                        )
-                    })}
                     {latestFullArray.map((aCandle:any, index:number) => {
                         return (
                             <div className="tx-xs pos-abs tx-gray" key={index}
@@ -163,7 +152,7 @@ function Component ({ initialArray }:any) {
                                     background: aCandle.side ? "green" : "red",
                                     width:"1px",
                                     height: `${aCandle.fullHeightPercent*100}%`,
-                                    left: `${index*1 + 4}px`,
+                                    left: `${index}px`,
                                     bottom: `${aCandle.bottomPercent*100}%`,
                                 }}
                             >
