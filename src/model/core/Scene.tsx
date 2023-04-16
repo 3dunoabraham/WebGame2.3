@@ -19,9 +19,9 @@ function Component ( {
       });
 
     return (
-        <Canvas camera={{ fov: 30, position: [0, 3, 6], }}  >
-            
-            <OrbitControls minPolarAngle={0.5} maxPolarAngle={2} 
+        <Canvas camera={{ fov: 35, position: [0, 3, 6], }}  >
+
+            <OrbitControls minPolarAngle={0.22} maxPolarAngle={2.1} 
                 minDistance={2} maxDistance={7} enablePan={false}
             />
 

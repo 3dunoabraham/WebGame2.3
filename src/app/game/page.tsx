@@ -19,56 +19,43 @@ export default async function Home() {
     }
   ) : null
   console.log("foundUser home page", foundUser)
-
+  const LOCAL_TICKER_SYMBOLS:any = ["BTCUSDT","ETHUSDT"]
   const tickers: Ticker[] = await Promise.all(
-    TICKER_SYMBOLS.map((aTicker)=>(getTicker(aTicker)))
+    LOCAL_TICKER_SYMBOLS.map((aTicker:any)=>(getTicker(aTicker)))
   );  
-  const tickerCards = TICKER_SYMBOLS.map((tickerName:any, index:number) => (
+  const tickerCards = LOCAL_TICKER_SYMBOLS.map((tickerName:any, index:number) => (
     <TickerCard initialTicker={tickers[index]} tickerName={tickerName} key={tickerName} />
   )); 
 
   return (<>
-    <main className='flex-col pos-rel' style={{background: "linear-gradient(165deg, #D6DBDC, #ffffff)"}}>
-      <div className='w-max-1080px  h-min-100vh pos-rel w-100 '>
+    <main className='flex-col px-3 pos-rel' style={{background: "linear-gradient(165deg, #D6DBDC, #ffffff)"}}>
+      <div className='  h-min-100vh pos-rel w-100 '>
       {/* w-max-1080px  pos-rel */}
 
-      <div className='pos-abs bottom-0 left-0 pb-100'>
+      <div className='pos-abs top-0 left-0 '>
         {tickerCards}
       </div>
       
       <a href="/dashboard" rel="noopener noreferrer"
-        className='pos-abs top-0 right-0 Q_xs_px-3 mt-100 pa-8 z-800 block tx-black tx-lg tx-ls-3 opaci-chov--50 tx-bold-2 nodeco '
+        className='pos-abs bottom-0 right-0 Q_xs_px-3 mt-3 pa-8 z-800 block tx-black tx-lg tx-ls-3 opaci-chov--50 tx-bold-2 nodeco '
       >
         Dashboard
       </a>
       <div className='flex-col'>
-        <a href="/" rel="noopener noreferrer" className='nodeco  w-min-80px z-800 pos-rel ' >
+        <a href="/game" rel="noopener noreferrer" className='nodeco  w-min-80px z-800 pos-rel ' >
           <h1 className='tx-center flex-col tx-bold-2 tx-white bg-black py-2 z-800 pos-rel bord-r-5 box-shadow-5-b '>
             <span className='tx-'><b>W</b>eb</span>
             <span className='tx-lg'><b>G</b>ame</span>
           </h1>
         </a>
       </div>
-      {!foundUser && <LoginForm />}
-      {foundUser && <>
-        <div className='flex-col tx-lx opaci-10 py-8'>Welcome Back!</div>
-      </>}
-      <a href="/" rel="noopener noreferrer"
-        className='pos-abs bottom-0 right-0 nodeco px-4 pb-100 opaci-chov--50'
-      >
-        <div className='flex gap-2 '>
-          <div className='flex-col'>
-              <Image alt="asd" width={24} height={24}
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Binance_Logo.svg/480px-Binance_Logo.svg.png"
-              />
-          </div>
-          <div className="tx-lx opaci-50 tx-black">+</div>
-          <div className="flex-col">
-            <Image src="/next.svg" alt="Next.js Logo" width={60} height={12} priority />
-          </div>
-        </div>
-      </a>
-
+      <div className='pos-abs top-0 right-0 pt-3'>
+        {!foundUser && <LoginForm />}
+        {foundUser && <>
+          <div className='flex-col tx-lx opaci-10 py-8'>Welcome Back!</div>
+        </>}
+      </div>
+      
     </div>
         
     <div className='pos-abs top-0 w-100 h-100'>
