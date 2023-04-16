@@ -122,7 +122,7 @@ function Component ({ initialArray }:any) {
                 <div className="pa-2 tx-sm pos-abs left-0 top-0">{latestSummary?.maxValue}</div>
                 <div className="pa-2 tx-sm pos-abs left-0 top-50p">{latestSummary?.avg}</div>
             </div>
-            <div className="w-80 h-min-50vh">
+            <div className="w-90 flex-align-self-end h-min-50vh">
                 <div className="flex flex-justify-between w-100   h-100 pos-rel">
                     {latestArray.map((aCandle:any, index:number) => {
                         return (
@@ -130,7 +130,7 @@ function Component ({ initialArray }:any) {
                                 style={{
                                     background: aCandle.side ? "#00990099" : "#ff000099",
                                     width:`${100/candleLength}%`,
-                                    height: `${aCandle.heightPercent*100}%`,
+                                    height: `${aCandle.heightPercent*99+1}%`,
                                     left: `${index*(100/candleLength)}%`,
                                     bottom: `${aCandle.raisePercent*100}%`,
                                 }}
@@ -144,7 +144,7 @@ function Component ({ initialArray }:any) {
                                 style={{
                                     background: aCandle.side ? "green" : "red",
                                     width:"1%",
-                                    height: `${aCandle.fullHeightPercent*100}%`,
+                                    height: `${aCandle.fullHeightPercent*99+1}%`,
                                     left: `${index*(100/candleLength) + (candleLength*0.25)}%`,
                                     bottom: `${aCandle.bottomPercent*100}%`,
                                 }}
