@@ -7,7 +7,7 @@ import { findMaxAndMinValues } from "../../../script/util/helper/kline";
 
 function Component ({ initialArray }:any) {
     const candleLength = 10
-    const queryArray:any = useKLine("BTCUSDT", "1m", 61000); // SEC*CANDLE*MILISECONDS
+    const queryArray:any = useKLine("BTCUSDT", "1m", 11000); // SEC*CANDLE*MILISECONDS
     const latestCandles = useMemo(()=>{
         return queryArray
         let latestLatest = queryArray.slice(500-candleLength,500)
@@ -106,7 +106,7 @@ function Component ({ initialArray }:any) {
                 <div className="pa-2 tx-sm pos-abs left-0 top-0">{latestSummary?.maxValue}</div>
                 <div className="pa-2 tx-sm pos-abs left-0 top-50p">{latestSummary?.avg}</div>
             </div>
-            <div className="w-80 h-min-100vh">
+            <div className="w-80 h-min-50vh">
                 <div className="flex flex-justify-between w-100   h-100 pos-rel">
                     {latestArray.map((aCandle:any, index:number) => {
                         return (
