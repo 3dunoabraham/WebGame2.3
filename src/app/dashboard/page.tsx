@@ -57,9 +57,10 @@ const theArray = await (
                 {tickerCards}
               </div>
           </div> */}
-          <div className='mb-8 '>
+          
+          {/* <div className='mb-8 '>
             <DashboardSummary theArray={theArray} />
-          </div>
+          </div> */}
 
           {/* <div className='flex '> */}
             <KLineChart initialArray={theArray} />

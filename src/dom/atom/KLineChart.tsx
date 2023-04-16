@@ -101,12 +101,12 @@ function Component ({ initialArray }:any) {
             style={{background: "linear-gradient(-50deg, #E6EBEC, #ffffff, #E6EBEC)"}}
         >
             <div>
-                <div className="pa-2 tx-sm pos-abs left-0 top-0 translate-y--100">{100 - ( (latestSummary?.percentChange || 100) *100 )}%</div>
+                <div className="pa-2 tx-sm pos-abs left-0 bottom-0 translate-y-100">{100 - ( (latestSummary?.percentChange || 100) *100 )}%</div>
                 <div className="pa-2 tx-sm pos-abs left-0 bottom-0">{latestSummary?.minValue}</div>
                 <div className="pa-2 tx-sm pos-abs left-0 top-0">{latestSummary?.maxValue}</div>
                 <div className="pa-2 tx-sm pos-abs left-0 top-50p">{latestSummary?.avg}</div>
             </div>
-            <div className="w-80 h-min-400px">
+            <div className="w-80 h-min-100vh">
                 <div className="flex flex-justify-between w-100   h-100 pos-rel">
                     {latestArray.map((aCandle:any, index:number) => {
                         return (
