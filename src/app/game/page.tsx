@@ -4,6 +4,8 @@ import { TICKER_SYMBOLS, Ticker, getTicker } from '@/../script/state/repository/
 import TickerCard from '@/dom/atom/TickerCard'
 import LoginForm from '@/dom/atom/LoginForm';
 import Scene from '@/model/core/Scene';
+import Head from 'next/head';
+import Level1 from '@/model/level/level1';
 
 
 export default async function Home() {
@@ -25,7 +27,7 @@ export default async function Home() {
     <TickerCard initialTicker={tickers[index]} tickerName={tickerName} key={tickerName} />
   )); 
 
-  return (
+  return (<>
     <main className='flex-col pos-rel' style={{background: "linear-gradient(165deg, #D6DBDC, #ffffff)"}}>
       <div className='w-max-1080px  h-min-100vh pos-rel w-100 '>
       {/* w-max-1080px  pos-rel */}
@@ -40,10 +42,10 @@ export default async function Home() {
         Dashboard
       </a>
       <div className='flex-col'>
-        <a href="/" rel="noopener noreferrer" className='nodeco  w-min-100px z-800 pos-rel' >
-          <h1 className='tx-center flex-col tx-bold-2 tx-white bg-black py-2 z-800 pos-rel box-shadow-5-b'>
+        <a href="/" rel="noopener noreferrer" className='nodeco  w-min-80px z-800 pos-rel ' >
+          <h1 className='tx-center flex-col tx-bold-2 tx-white bg-black py-2 z-800 pos-rel bord-r-5 box-shadow-5-b '>
             <span className='tx-'><b>W</b>eb</span>
-            <span className='tx-'><b>A</b>pp</span>
+            <span className='tx-lg'><b>G</b>ame</span>
           </h1>
         </a>
       </div>
@@ -70,9 +72,9 @@ export default async function Home() {
     </div>
         
     <div className='pos-abs top-0 w-100 h-100'>
-      <Scene />
+      <Level1 />
     </div>
 
     </main>
-  )
+  </>)
 }

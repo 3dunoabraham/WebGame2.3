@@ -20,6 +20,7 @@ const Component = ({
           </a>
 
           <div className='flex-1'>
+            <a className='tx-lx' href="/game" target='_blank'>Game</a>
           </div>
           <div className='pb-4'>
             
