@@ -47,7 +47,7 @@ const theArray = await (
       </div>
 
       <div className=' flex px-8 Q_xs_px-2 pt-8 '>
-        <div className='w-min-300px invisible'> invisible sidebar spacing </div>
+        <div className='w-min-200px invisible'> invisible sidebar spacing </div>
         <div className='flex-1 flex-col  flex-align-start tx-sans'>
           
           {/* <div>
@@ -62,9 +62,7 @@ const theArray = await (
             <DashboardSummary theArray={theArray} />
           </div> */}
 
-          {/* <div className='flex '> */}
-            <KLineChart initialArray={theArray} />
-          {/* </div> */}
+          <KLineChart initialArray={theArray} />
 
           <div >
             <h1>List</h1>
@@ -73,6 +71,7 @@ const theArray = await (
           <div className='tx-bold-3'>Table: isActionable, isRowLink, isDetailed</div>
           <h3 className='tx-bold-3'>Closing, Volumne, Trades</h3>
           <KLineTable initialArray={theArray} />
+
           
             
         </div>
