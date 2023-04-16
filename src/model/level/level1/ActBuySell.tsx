@@ -22,6 +22,7 @@ function Component ({}) {
         if (!$wormhole.current) {
             return
         }
+        $text.current.rotation.y += 0.01
         if ($text.current && !forms.isClicked) {
             s__totaldelta(totaldelta+delta)
             $text.current.position.y = Math.sin(totaldelta*4)/10 + 1
@@ -70,29 +71,13 @@ function Component ({}) {
                 <group ref={$text}  position={[0,1.2,0]}>
                     <Text fontSize={0.5} material={new MeshStandardMaterial({ side: 0, color: "grey" })}>{forms.score}</Text>
                     <Text fontSize={0.5} rotation={[0,Math.PI,0]} material={new MeshStandardMaterial({ side: 0, color: "grey" })}>{forms.score}</Text>
-                    <Text fontSize={0.5} rotation={[0,Math.PI/2,0]} material={new MeshStandardMaterial({ side: 0, color: "grey" })}>{forms.score}</Text>
-                    <Text fontSize={0.5} rotation={[0,-Math.PI/2,0]} material={new MeshStandardMaterial({ side: 0, color: "grey" })}>{forms.score}</Text>
                 </group>
             }
 
             {
                 <group ref={$topPart}>
-                    {/* {!!forms.isClicked && <group>
-                        
-                        <Cylinder args={[0.2, 0.1, 10, 4, 3]} receiveShadow castShadow position={[-1,0,-1]} >
-                            <meshStandardMaterial attach="material"  wireframe={!forms.isClicked}   />
-                        </Cylinder>
-                        
-                        <Cylinder args={[1, 1, 0.5, 4, 3]} receiveShadow castShadow position={[-0.5,4.5,-0.5]} >
-                            <meshStandardMaterial attach="material"  wireframe={!forms.isClicked}   />
-                        </Cylinder>
-                    </group>}
-                    
-                    <Cylinder args={[0.4, 0.3, 2, 4, 3]} receiveShadow castShadow position={[-1,-2,-1]} >
-                        <meshStandardMaterial attach="material"   />
-                    </Cylinder> */}
                     {!!forms.isClicked &&
-                        <Cylinder args={[0.1, 0.2, 0.2, 4, 3]} receiveShadow castShadow position={[0,0,0]}  ref={$middlePart}>
+                        <Cylinder args={[0.05, 0.1, 0.2, 5, 3]} receiveShadow castShadow position={[0,0,0]}  ref={$middlePart}>
                             <meshStandardMaterial attach="material" color={0x0099ff} wireframe={true} />
                         </Cylinder>
                     }
