@@ -7,7 +7,7 @@ import useTicker from "../../../script/util/hook/useTicker";
 
 
 function Component ({ initialArray }:any) {
-    const candleLength = 10
+    const candleLength = 15
     const queryTicker:any = useTicker("BTCUSDT", 1000); // SECond
     const queryArray:any = useKLine("BTCUSDT", "1m", 11000); // SEC*CANDLE*MILISECONDS
     const latestCandles = useMemo(()=>{
@@ -99,21 +99,22 @@ function Component ({ initialArray }:any) {
     const summaryDetails = useMemo(()=>{
         return {
             last10: 100 - ( (latestSummary?.percentChange || 100) *100 ),
-            last10Percent: parseInt(`${  1000*(100 - ( (latestSummary?.percentChange || 100) *100 )) }`)
+            last10Percent: parseInt(`${  500*(100 - ( (latestSummary?.percentChange || 100) *100 )) }`)
         }
     },[latestSummary])
 
     return (<>
-        <div className="flex-col w-100 pos-rel box-shadow-1 py-2  "
+        <div className="flex-col w-100 pos-rel box-shadow-1 py-2  bord-r-10"
             style={{background: "linear-gradient(-50deg, #E6EBEC, #ffffff, #E6EBEC)"}}
         >
-            <div>
+            <div className="">
                 <div className="pa-2 tx-sm pos-abs left-0 top-0 translate-y--100 flex gap-2">
-                    <div>{(`${queryTicker?.symbol}`)} :</div>
-                    {!!queryTicker.price && parseFloat(queryTicker.price).toFixed(2)}
+                    <div className="tx-lg opaci-50">{(`${queryTicker?.symbol}`)} :</div>
+                    <div className="tx-lgx">{!!queryTicker.price && parseFloat(queryTicker.price).toFixed(2)}</div>
                     <div className="px-2"></div>
-                    <div>
-                        Last {candleLength} range: {summaryDetails.last10Percent}%
+                    <div className="flex flex-align-end gap-2">
+                        <div className="opaci-50">Last {candleLength} range x50:</div>
+                        <div className="tx-lg">{summaryDetails.last10Percent}%</div>
                     </div>
                 </div>
                 {/* <div className="pa-2 tx-sm pos-abs left-0 bottom-0 translate-y-100">{100 - ( (latestSummary?.percentChange || 100) *100 )}%</div> */}
@@ -127,10 +128,10 @@ function Component ({ initialArray }:any) {
                         return (
                             <div className="tx-xs pos-abs tx-gray" key={index}
                                 style={{
-                                    background: aCandle.side ? "green" : "red",
+                                    background: aCandle.side ? "#00990099" : "#ff000099",
                                     width:`${100/candleLength}%`,
                                     height: `${aCandle.heightPercent*100}%`,
-                                    left: `${index*candleLength}%`,
+                                    left: `${index*(100/candleLength)}%`,
                                     bottom: `${aCandle.raisePercent*100}%`,
                                 }}
                             >
@@ -144,7 +145,7 @@ function Component ({ initialArray }:any) {
                                     background: aCandle.side ? "green" : "red",
                                     width:"1%",
                                     height: `${aCandle.fullHeightPercent*100}%`,
-                                    left: `${index*candleLength + 4}%`,
+                                    left: `${index*(100/candleLength) + (candleLength*0.25)}%`,
                                     bottom: `${aCandle.bottomPercent*100}%`,
                                 }}
                             >
@@ -154,12 +155,12 @@ function Component ({ initialArray }:any) {
                 </div>
             </div>
         </div>
-        <div className="flex w-100">
+        <div className="flex w-100 bord-r-10 noverflow mt-4">
             
-            <div className="flex-col flex-1 pos-rel box-shadow-1 py-2  h-min-200px "
+            <div className="flex-col flex-1 pos-rel box-shadow-1 py-2  px-2 h-min-200px "
                 
             >
-                <div className="w-100 flex-col   h-min-300px ">
+                <div className="w-100 flex-col   h-min-30vh box-shadow-1-b bord-r-l-5">
                     <div className="flex  flex-justify-between w-100    h-100 pos-rel">
                         {latestFullArray.map((aCandle:any, index:number) => {
                             return (
@@ -179,11 +180,14 @@ function Component ({ initialArray }:any) {
                 </div>
             </div>
             <div className="noverflow flex-1 flex flex-align-end flex-justify-center box-shadow-i-2 pos-rel">
-                <div className="tx-lx pa-4 tx-roman pos-abs top-0 right-0">
-                    wait
+                <div className="tx-lx pa-5 tx-roman pos-abs pb-2 bottom-0 right-0">
+                    Wait
                 </div>
-                <div className="tx-lx pa-4 tx-roman pos-abs top-0 left-0">
-                    act
+                <div className="tx-lx pa-5 tx-roman pos-abs pb-2 top-0 left-50 ">
+                    Watch
+                </div>
+                <div className="tx-lx pa-5 tx-roman pos-abs pb-2 bottom-0 left-0">
+                    Act
                 </div>
                 <div className="flex-col pos-rel  py-2  "
                     
@@ -205,7 +209,7 @@ function Component ({ initialArray }:any) {
                 <div className="flex-col pos-rel  py-2  "
                     
                 >
-                    <div className="bord-r-100p bg-b-50 h-300px w-300px bottom-0 pos-abs translate-y-50">
+                    <div className="bord-r-100p bg-b-20 h-300px w-300px bottom-0 pos-abs translate-y-50">
 
                     </div>
                     <div className="py-1 bg-b-50 w-200px pos-abs bottom-0"
@@ -222,10 +226,10 @@ function Component ({ initialArray }:any) {
                 <div className="flex-col pos-rel  py-2  "
                     
                 >
-                    <div className="bord-r-100p bg-b-50 h-500px w-500px bottom-0 pos-abs translate-y-50">
+                    <div className="bord-r-100p bg-b-10 h-300px w-500px bottom-0 pos-abs translate-y-50">
 
                     </div>
-                    <div className="pt-1 bg-b-50 w-450px pos-abs bottom-0"
+                    <div className="pt-1 bg-black w-450px pos-abs bottom-0"
                         style={{transform:`rotate(${10+(summaryDetails.last10Percent*160/100)}deg)`}}
                     >
 

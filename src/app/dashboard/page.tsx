@@ -48,7 +48,7 @@ const theArray = await (
 
       <div className=' flex px-8 Q_xs_px-2 pt-8 '>
         <div className='w-min-200px invisible'> invisible sidebar spacing </div>
-        <div className='flex-1 flex-col  flex-align-start tx-sans'>
+        <div className='flex-1 flex-col  flex-align-start tx-sans pt-4'>
           
           {/* <div>
             <h1 className='tx-bold-3'>Tickers</h1>

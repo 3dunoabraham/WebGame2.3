@@ -72,6 +72,7 @@
 .h-min-90 { min-height: 90%; }.h-min-95 { min-height: 95%; }.h-min-100 { min-height: 100%; }
 .h-min-100vh { min-height: 100vh; }.h-min-100vw { min-height: 100vw; }
 .h-min-50vh { min-height: 50vh; }.h-min-50vw { min-height: 50vw; }
+.h-min-30vh { min-height: 30vh; }.h-min-30vw { min-height: 30vw; }
 .h-min-50px { min-height: 50px; }.h-min-80px { min-height: 80px; }.h-min-100px { min-height: 100px; }
 .h-min-120px { min-height: 120px; }.h-min-150px { min-height: 150px; }.h-min-200px { min-height: 200px; }
 .h-min-250px { min-height: 250px; }.h-min-220px { min-height: 220px; }.h-min-300px { min-height: 300px; }
