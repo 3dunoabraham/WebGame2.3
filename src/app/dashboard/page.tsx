@@ -34,7 +34,7 @@ const theArray = await (
   )); 
 
   return (
-    <main className='flex-col pos-rel  ' >
+    <main className='flex-col pos-rel ddg ' >
       <div className='h-min-100vh pos-rel w-100 '>
 
 
@@ -57,12 +57,13 @@ const theArray = await (
                 {tickerCards}
               </div>
           </div> */}
-          <div className='mb-8'>
+          <div className='mb-8 '>
             <DashboardSummary theArray={theArray} />
           </div>
 
-          
-          <KLineChart initialArray={theArray} />
+          {/* <div className='flex '> */}
+            <KLineChart initialArray={theArray} />
+          {/* </div> */}
 
           <div >
             <h1>List</h1>
